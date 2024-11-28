@@ -1,0 +1,80 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+
+{% load static %}
+
+    <!-- PRODUCT TAB AREA START (product-item-3) -->
+    <div class="ltn__product-tab-area ltn__product-gutter pt-115 pb-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title-area ltn__section-title-2--- text-center">
+                        <!-- <h6 class="section-subtitle ltn__secondary-color">// Cars</h6> -->
+                        <h1 class="section-title">Search results for {{query}} </h1>
+                        <p>A highly efficient slip-ring scanner for today's diagnostic requirements.</p>
+                    </div>
+
+                    <div class="tab-content">
+                        <div class="tab-pane fade active show" id="liton_tab_3_1">
+                            <div class="ltn__product-tab-content-inner">
+                                <div class="row ltn__tab-product-slider-one-active slick-arrow-1">
+                                    <!-- ltn__product-item -->
+                                    {% for product in searchlist %}
+                                    <div class="col-lg-12">
+                                        <div class="ltn__product-item ltn__product-item-3 text-center">
+                                            <div class="product-img">
+                                                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                                                <!-- Example badge based on sale status -->
+                                                {% if product.on_sale %}
+                                                <div class="product-badge">
+                                                    <ul>
+                                                        <li class="sale-badge">-{{ product.discount_percent }}%</li>
+                                                    </ul>
+                                                </div>
+                                                {% endif %}
+                                                <div class="product-hover-action">
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" title="Quick View" class="quick-view-btn" data-product-id="{{ product.id }}" data-product-name="{{ product.name }}" data-product-image="{{ product.image.url }}">
+                                                                <i class="far fa-eye"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="Add to Cart" class="add-to-cart-btn" data-product-id="{{ product.id }}" data-product-name="{{ product.name }}" data-product-image="{{ product.image.url }}">
+                                                                <i class="fas fa-shopping-cart"></i>
+                                                            </a>
+                                                        </li>
+                                                        <!-- Additional actions like wishlist -->
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="product-info">
+                                                <!-- Product details -->
+                                                <h2 class="product-title"><a href="#">{{ product.name }}</a></h2>
+                                                <div class="product-price">
+                                                    <!-- Price display -->
+                                                    <span>${{ product.price }}</span>
+                                                    {% if product.on_sale %}
+                                                    <del>${{ product.original_price }}</del>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+
+                                    <!--  -->
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- PRODUCT TAB AREA END -->
+
+
+{% endblock %}

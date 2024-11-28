@@ -1,0 +1,11 @@
+<h2>Order Confirmation</h2>
+<p>Order ID: {{ order.id }}</p>
+<p>Total Price: {{ order.total_price }}</p>
+<p>Status: {{ order.status }}</p>
+
+<h3>Products Ordered:</h3>
+<ul>
+    {% for order_product in order_products %}
+        <li>{{ order_product.product.name }} - Quantity: {{ order_product.quantity }}</li>
+    {% endfor %}
+</ul>

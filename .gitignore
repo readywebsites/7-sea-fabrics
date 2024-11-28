@@ -1,0 +1,32 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+virtualenv/
+
+# Django migrations
+*/migrations/
+!*/migrations/__init__.py
+
+# SQLite database
+*.sqlite3
+
+# Environment variables
+.env
+
+# System-specific files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Other caches and build artifacts
+*.cache
+*.egg-info/
+build/
+dist/

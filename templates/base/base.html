@@ -1,0 +1,1583 @@
+{% load static %}
+{% load custom_filters %}
+
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Quarter - Real Estate HTML Template</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Place favicon.png in the root directory -->
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon" />
+    <!-- Font Icons css -->
+    <link rel="stylesheet" href="{% static 'css/font-icons.css' %}">
+
+    <script src="https://kit.fontawesome.com/29045762a1.js" crossorigin="anonymous"></script>   
+    <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Responsive css -->
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- All JS Plugins -->
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <!-- Main JS -->
+    <script src="{% static 'js/main.js' %}"></script>
+
+    <!-- Include Django CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token }}">
+
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+
+<!-- Body main wrapper start -->
+<div class="body-wrapper">
+
+    <!-- HEADER AREA START (header-3) -->
+    <header class="ltn__header-area ltn__header-3 section-bg-6---">   
+        <!-- ltn__header-top-area start -->
+        <div class="ltn__header-top-area border-bottom top-area-color-white---">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="ltn__top-bar-menu">
+                            <ul>
+                                <li><a href="mailto:info@webmail.com?Subject=Flower%20greetings%20to%20you"><i class="icon-mail"></i> info@webmail.com</a></li>
+                                <li><a href="locations.html"><i class="icon-placeholder"></i> 15/A, Nest Tower, NYC</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="top-bar-right text-end">
+                            <div class="ltn__top-bar-menu">
+                                <ul>
+                                    <li>
+                                        <!-- ltn__language-menu -->
+                                        <div class="ltn__drop-menu ltn__currency-menu ltn__language-menu">
+                                            <ul>
+                                                <li><a href="#" class="dropdown-toggle"><span class="active-currency">English</span></a>
+                                                    <ul>
+                                                        <li><a href="#">Arabic</a></li>
+                                                        <li><a href="#">Bengali</a></li>
+                                                        <li><a href="#">Chinese</a></li>
+                                                        <li><a href="#">English</a></li>
+                                                        <li><a href="#">French</a></li>
+                                                        <li><a href="#">Hindi</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <!-- ltn__social-media -->
+                                        <div class="ltn__social-media">
+                                            <ul>
+                                                <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                                <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                                                
+                                                <li><a href="#" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+                                                <li><a href="#" title="Dribbble"><i class="fab fa-dribbble"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ltn__header-top-area end -->     
+        <!-- ltn__header-middle-area start -->
+        <div class="ltn__header-middle-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="site-logo">
+                            <a href="index.html"><img src="{% static 'img/logo.png' %}" alt="Logo"></a>
+                        </div>
+                    </div>
+                    <div class="col header-contact-serarch-column d-none d-xl-block">
+                        <div class="header-contact-search">
+                            <!-- header-feature-item -->
+                            <div class="header-feature-item d-none">
+                                <div class="header-feature-icon">
+                                    <i class="icon-phone"></i>
+                                </div>
+                                <div class="header-feature-info">
+                                    <h6>Phone</h6>
+                                    <p><a href="tel:0123456789">+0123-456-789</a></p>
+                                </div>
+                            </div>
+                            <!-- header-search-2 -->
+                            <div class="header-search-2">
+                                <form action="{% url 'search' %}">
+                                    <input type="text" name="q" value="" placeholder="Search here..."/>
+                                    <button type="submit">
+                                        <span><i class="icon-search"></i></span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <!-- header-options -->
+                        <div class="ltn__header-options">
+                            <ul>
+                                <li class="">
+                                    <!-- ltn__currency-menu -->
+                                    <div class="ltn__drop-menu ltn__currency-menu">
+                                        <ul>
+                                            <li><a href="#" class="dropdown-toggle"><span class="active-currency">                                                    {% if request.session.currency %}
+                                                {{ request.session.currency }}
+                                            {% else %}
+                                                USD
+                                            {% endif %}</span></a>
+                                                <ul>
+                                                    <li><a href="#" data-currency="USD">USD - US Dollar</a></li>
+                                                    <li><a href="#" data-currency="CAD">CAD - Canadian Dollar</a></li>
+                                                    <li><a href="#" data-currency="EUR">EUR - Euro</a></li>                                                    
+                                                    <li><a href="#" data-currency="GBP">GBP - British Pound</a></li>                                                    
+                                                    <li><a href="#" data-currency="INR">INR - Indian Rupee</a></li>                                                    
+                                                    <li><a href="#" data-currency="AUD">AUD - Australian Dollar</a></li>                                                    
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                        <script>
+                                            $(document).ready(function() {
+        $('.ltn__currency-menu a[data-currency]').click(function(e) {
+            e.preventDefault();
+    
+            var selectedCurrency = $(this).data('currency');
+    
+            $.ajax({
+                url: '/change-currency/',  // URL to your change_currency view
+                type: 'POST',
+                data: {
+                    'currency': selectedCurrency,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'  // Include CSRF token for security
+                },
+                dataType: 'json',
+                success: function(data) {
+                    if (data.success) {
+                        // Update the displayed currency
+                        $('.active-currency').text(selectedCurrency);
+    
+                        // Optional: Update UI or notify user
+                        console.log('Currency changed successfully');
+                        location.reload();  // Reload page or update UI as necessary
+                    } else {
+                        // Optional: Handle error scenario
+                        console.log('Failed to change currency');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // Optional: Handle AJAX errors
+                    console.error('AJAX error:', error);
+                }
+            });
+        });
+    });
+    
+                                        </script>
+                                    </div>
+                                </li>
+                                <li class="d-none--- ">
+                                    <!-- header-search-1 -->
+                                    <div class="header-search-wrap d-block d-xl-none">
+                                        <div class="header-search-1">
+                                            <div class="search-icon">
+                                                <i class="icon-search  for-search-show"></i>
+                                                <i class="icon-cancel  for-search-close"></i>
+                                            </div>
+                                        </div>
+                                        <div class="header-search-1-form">
+                                            <form id="#" method="get"  action="#">
+                                                <input type="text" name="search" value="" placeholder="Search here..."/>
+                                                <button type="submit">
+                                                    <span><i class="icon-search"></i></span>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="d-none---"> 
+                                    <!-- user-menu -->
+                                    <div class="ltn__drop-menu user-menu">
+                                        <ul>
+                                            <li>
+                                                <a href="#"><i class="icon-user"></i></a>
+                                                <ul>
+                                                    <li><a href="/accounts/login">Sign in</a></li>
+                                                    <li><a href="/accounts/signup">Register</a></li>
+                                                    <li><a href="/profile/">My Account</a></li>
+                                                    <li><a href="wishlist.html">Wishlist</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <!-- mini-cart 2 -->
+                                    <div class="mini-cart-icon mini-cart-icon-2">
+                                        <a href="#ltn__utilize-cart-menu" class="ltn__utilize-toggle">
+                                            <span class="mini-cart-icon">
+                                                <i class="icon-shopping-cart"></i>
+                                                <sup id="cart-total-items">{{cart_items}}</sup>
+                                            </span>
+                                            <h6><span>Your Cart</span> <span class="ltn__secondary-color">${{total}}</span></h6>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ltn__header-middle-area end -->
+
+        <!-- MOBILE MENU START -->
+        <div class="mobile-header-menu-fullwidth mb-20 d-block d-lg-none">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- Mobile Menu Button -->
+                        <div class="mobile-menu-toggle d-lg-none">
+                            <span>MENU</span>
+                            <a href="#ltn__utilize-mobile-menu" class="ltn__utilize-toggle">
+                                <svg viewBox="0 0 800 600">
+                                    <path d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200" id="top"></path>
+                                    <path d="M300,320 L540,320" id="middle"></path>
+                                    <path d="M300,210 C300,210 520,210 540,210 C740,210 640,530 520,410 C440,330 300,190 300,190" id="bottom" transform="translate(480, 320) scale(1, -1) translate(-480, -318) "></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- MOBILE MENU END -->
+        
+        <!-- header-bottom-area start -->
+        <div class="header-bottom-area ltn__border-top---   ltn__sticky-bg-white ltn__primary-bg---- menu-color-white---- d-none--- d-lg-block">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 align-self-center">
+                        <!-- CATEGORY-MENU-LIST START -->
+                        <div class="ltn__category-menu-wrap ltn__category-dropdown-hide ltn__category-menu-with-header-menu">
+                            <div class="ltn__category-menu-title">
+                                <h2 class="section-bg-1--- ltn__secondary-bg text-color-white">Health Concerns</h2>
+                            </div>
+                            <div class="ltn__category-menu-toggle ltn__one-line-active">
+                                <ul>
+                                    <!-- Respiratory Health -->
+                                    <li class="ltn__category-menu-item ltn__category-menu-drop">
+                                        <a href="shop.html"><img src="data:image/png;base64,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" alt="Kidney Icon" style="width:24px; height:24px; margin-right: 6px;">Respiratory Health</a>
+                                        <ul class="ltn__category-submenu ltn__category-column-2">
+                                            <li class="ltn__category-submenu-title ltn__category-menu-drop"><a href="#">Conditions</a>
+                                                <ul class="ltn__category-submenu-children">
+                                                    <li><a href="#">Asthma</a></li>
+                                                    <li><a href="#">Bronchitis</a></li>
+                                                    <li><a href="#">Cold & Cough</a></li>
+                                                    <li><a href="#">Nose Bleed/Epistaxis</a></li>
+                                                    <li><a href="#">Shortness of Breath/Dyspnoea</a></li>
+                                                    <li><a href="#">Pneumonia</a></li>
+                                                    <li><a href="#">Tuberculosis</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <!-- Cardiovascular Health -->
+                                    <li class="ltn__category-menu-item ltn__category-menu-drop">
+                                        <a href="shop.html"><img src="https://cdn-icons-png.flaticon.com/512/3456/3456561.png" alt="Kidney Icon" style="width:24px; height:24px; margin-right: 6px;">Cardiovascular Health</a>
+                                        <ul class="ltn__category-submenu ltn__category-column-1">
+                                            <li class="ltn__category-submenu-title ltn__category-menu-drop"><a href="#">Heart & Blood Vessels</a>
+                                                <ul class="ltn__category-submenu-children">
+                                                    <li><a href="#">Cholesterol</a></li>
+                                                    <li><a href="#">Blood Pressure</a></li>
+                                                    <li><a href="#">Coronary Artery Diseases</a></li>
+                                                    <li><a href="#">Varicose Veins</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <!-- Gastrointestinal Health -->
+                                    <li class="ltn__category-menu-item ltn__category-menu-drop">
+                                        <a href="shop.html"><img src="https://cdn-icons-png.flaticon.com/512/10172/10172589.png" alt="Kidney Icon" style="width:24px; height:24px; margin-right: 6px;">Gastrointestinal Health</a>
+                                        <ul class="ltn__category-submenu ltn__category-column-2">
+                                            <li class="ltn__category-submenu-title ltn__category-menu-drop"><a href="#">Stomach & Digestive System</a>
+                                                <ul class="ltn__category-submenu-children">
+                                                    <li><a href="#">Acidity</a></li>
+                                                    <li><a href="#">Constipation</a></li>
+                                                    <li><a href="#">Diarrhoea</a></li>
+                                                    <li><a href="#">Flatulence & Gas</a></li>
+                                                    <li><a href="#">Heartburn</a></li>
+                                                    <li><a href="#">Indigestion & Bloating</a></li>
+                                                    <li><a href="#">Irritable Bowel Syndrome</a></li>
+                                                    <li><a href="#">Jaundice</a></li>
+                                                    <li><a href="#">Liver Diseases</a></li>
+                                                    <li><a href="#">Ulcers</a></li>
+                                                    <li><a href="#">Nausea & Vomiting</a></li>
+                                                    <li><a href="#">Colic & Abdominal Pain</a></li>
+                                                    <li><a href="#">Worms & Parasitic Infections</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="ltn__category-submenu-title ltn__category-menu-drop"><a href="#">Rectum & Anus</a>
+                                                <ul class="ltn__category-submenu-children">
+                                                    <li><a href="#">Fissures & Anal Pain</a></li>
+                                                    <li><a href="#">Haemorrhoids/Piles</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <!-- Musculoskeletal Health -->
+                                    <li class="ltn__category-menu-item ltn__category-menu-drop">
+                                        <a href="shop.html"><img src="https://www.heartlandrehab.sg/wp-content/uploads/2020/04/musculoskeletal-physiotherapy-icon-1024x1024.png" alt="Kidney Icon" style="width:24px; height:24px; margin-right: 6px;"></i>Musculoskeletal Health</a>
+                                        <ul class="ltn__category-submenu ltn__category-column-3">
+                                            <li class="ltn__category-submenu-title ltn__category-menu-drop"><a href="#">Bones & Joints</a>
+                                                <ul class="ltn__category-submenu-children">
+                                                    <li><a href="#">Arthritis</a></li>
+                                                    <li><a href="#">Back & Neck Pain</a></li>
+                                                    <li><a href="#">Gout</a></li>
+                                                    <li><a href="#">Knee Pain</a></li>
+                                                    <li><a href="#">Osteoporosis</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="ltn__category-submenu-title ltn__category-menu-drop"><a href="#">Muscles</a>
+                                                <ul class="ltn__category-submenu-children">
+                                                    <li><a href="#">Muscle Pain</a></li>
+                                                    <li><a href="#">Muscle Weakness</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="ltn__category-submenu-title ltn__category-menu-drop"><a href="#">Ligaments & Tendons</a>
+                                                <ul class="ltn__category-submenu-children">
+                                                    <li><a href="#">Sprains & Strains</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <!-- Urogenital Health -->
+                                    <li class="ltn__category-menu-item ltn__category-menu-drop">
+                                        <!-- https://cdn-icons-png.flaticon.com/512/6454/6454819.png -->
+                                        <!-- <a href="shop.html"><img src="https://png.pngtree.com/png-clipart/20211116/original/pngtree-human-kidneys-icons-illustration-art-png-image_6946022.png" alt="Kidney Icon" style="width:24px; height:24px;"> Vegetables and Fruits <span class="expand"></span></a> -->
+                                        <a href="shop.html"><img src="https://png.pngtree.com/png-clipart/20211116/original/pngtree-human-kidneys-icons-illustration-art-png-image_6946022.png" alt="Kidney Icon" style="width:24px; height:24px;margin-right: 6px;">Urogenital Health</a>
+                                        <ul class="ltn__category-submenu ltn__category-column-2">
+                                            <li class="ltn__category-submenu-title ltn__category-menu-drop"><a href="#">Urinary System</a>
+                                                <ul class="ltn__category-submenu-children">
+                                                    <li><a href="#">Bladder Infections/UTI</a></li>
+                                                    <li><a href="#">Kidney Stones</a></li>
+                                                    <li><a href="#">Prostate Disorders</a></li>
+                                                    <li><a href="#">Bedwetting</a></li>
+                                                    <li><a href="#">Incontinence</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="ltn__category-submenu-title ltn__category-menu-drop"><a href="#">Male Health</a>
+                                                <ul class="ltn__category-submenu-children">
+                                                    <li><a href="#">Sexual Disorders</a></li>
+                                                    <li><a href="#">Infertility</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="ltn__category-submenu-title ltn__category-menu-drop"><a href="#">Female Health</a>
+                                                <ul class="ltn__category-submenu-children">
+                                                    <li><a href="#">Menstruation & Period Problems</a></li>
+                                                    <li><a href="#">Menopause</a></li>
+                                                    <li><a href="#">PCOS</a></li>
+                                                    <li><a href="#">Pregnancy</a></li>
+                                                    <li><a href="#">Leucorrhoea</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <!-- Paediatric Health -->
+                                    <li class="ltn__category-menu-item ltn__category-menu-drop">
+                                        <a href="shop.html"><img src="https://cdn-icons-png.flaticon.com/256/10154/10154448.png" alt="Kidney Icon" style="width:24px; height:24px;margin-right: 6px;">Paediatric Health</a>
+                                        <ul class="ltn__category-submenu ltn__category-column-2">
+                                            <li class="ltn__category-submenu-title ltn__category-menu-drop"><a href="#">Children's Health</a>
+                                                <ul class="ltn__category-submenu-children">
+                                                    <li><a href="#">Bedwetting</a></li>
+                                                    <li><a href="#">Colic</a></li>
+                                                    <li><a href="#">Constipation</a></li>
+                                                    <li><a href="#">Cough & Cold</a></li>
+                                                    <li><a href="#">Diarrhoea</a></li>
+                                                    <li><a href="#">Teething Troubles</a></li>
+                                                    <li><a href="#">Tonsillitis</a></li>
+                                                    <li><a href="#">Vomiting</a></li>
+                                                    <li><a href="#">Worm Infestation</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="ltn__category-submenu-title ltn__category-menu-drop"><a href="#">Developmental Disorders</a>
+                                                <ul class="ltn__category-submenu-children">
+                                                    <li><a href="#">Autism</a></li>
+                                                    <li><a href="#">ADHD</a></li>
+                                                    <li><a href="#">Learning Disabilities</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <!-- Skin & Hair Health -->
+                                    <li class="ltn__category-menu-item ltn__category-menu-drop">
+                                        <a href="shop.html"><img src="https://cdn-icons-png.flaticon.com/512/10572/10572510.png" alt="Kidney Icon" style="width:24px; height:24px;margin-right: 6px;">Skin & Hair Health</a>
+                                        <ul class="ltn__category-submenu ltn__category-column-2">
+                                            <li class="ltn__category-submenu-title ltn__category-menu-drop"><a href="#">Skin</a>
+                                                <ul class="ltn__category-submenu-children">
+                                                    <li><a href="#">Acne</a></li>
+                                                    <li><a href="#">Eczema</a></li>
+                                                    <li><a href="#">Psoriasis</a></li>
+                                                    <li><a href="#">Fungal Infections</a></li>
+                                                    <li><a href="#">Vitiligo</a></li>
+                                                    <li><a href="#">Warts</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="ltn__category-submenu-title ltn__category-menu-drop"><a href="#">Hair</a>
+                                                <ul class="ltn__category-submenu-children">
+                                                    <li><a href="#">Hair Loss</a></li>
+                                                    <li><a href="#">Dandruff</a></li>
+                                                    <li><a href="#">Scalp Infections</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <!-- Mental Health -->
+                                    <li class="ltn__category-menu-item ltn__category-menu-drop">
+                                        <a href="shop.html"><img src="https://cdn-icons-png.flaticon.com/512/3998/3998035.png" alt="Kidney Icon" style="width:24px; height:24px;margin-right: 6px;">Mental Health</a>
+                                        <ul class="ltn__category-submenu ltn__category-column-1">
+                                            <li class="ltn__category-submenu-title ltn__category-menu-drop"><a href="#">Conditions</a>
+                                                <ul class="ltn__category-submenu-children">
+                                                    <li><a href="#">Anxiety</a></li>
+                                                    <li><a href="#">Depression</a></li>
+                                                    <li><a href="#">Stress</a></li>
+                                                    <li><a href="#">Insomnia</a></li>
+                                                    <li><a href="#">Bipolar Disorder</a></li>
+                                                    <li><a href="#">Schizophrenia</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <!-- Women's Health -->
+                                    <li class="ltn__category-menu-item ltn__category-menu-drop">
+                                        <a href="shop.html"><img src="https://cdn-icons-png.flaticon.com/512/36/36491.png" alt="Kidney Icon" style="width:24px; height:24px;margin-right: 6px;">Women's Health</a>
+                                        <ul class="ltn__category-submenu ltn__category-column-3">
+                                            <li class="ltn__category-submenu-title ltn__category-menu-drop"><a href="#">Menstruation & Period Problems</a>
+                                                <ul class="ltn__category-submenu-children">
+                                                    <li><a href="#">Painful Periods</a></li>
+                                                    <li><a href="#">Irregular Periods</a></li>
+                                                    <li><a href="#">Heavy Bleeding</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="ltn__category-submenu-title ltn__category-menu-drop"><a href="#">Pregnancy & Postpartum</a>
+                                                <ul class="ltn__category-submenu-children">
+                                                    <li><a href="#">Morning Sickness</a></li>
+                                                    <li><a href="#">Labour & Delivery</a></li>
+                                                    <li><a href="#">Postpartum Depression</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="ltn__category-submenu-title ltn__category-menu-drop"><a href="#">Menopause</a>
+                                                <ul class="ltn__category-submenu-children">
+                                                    <li><a href="#">Hot Flashes</a></li>
+                                                    <li><a href="#">Night Sweats</a></li>
+                                                    <li><a href="#">Mood Swings</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <!-- Men's Health -->
+                                    <li class="ltn__category-menu-item ltn__category-menu-drop">
+                                        <a href="shop.html"><img src="https://cdn2.iconfinder.com/data/icons/coronavirus-innovicons-color-1/128/button-Mens_health-healthcare-protection-shield-512.png" alt="Kidney Icon" style="width:24px; height:24px;margin-right: 6px;">Men's Health</a>
+                                        <ul class="ltn__category-submenu ltn__category-column-2">
+                                            <li class="ltn__category-submenu-title ltn__category-menu-drop"><a href="#">Sexual Health</a>
+                                                <ul class="ltn__category-submenu-children">
+                                                    <li><a href="#">Erectile Dysfunction</a></li>
+                                                    <li><a href="#">Premature Ejaculation</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="ltn__category-submenu-title ltn__category-menu-drop"><a href="#">Prostate Health</a>
+                                                <ul class="ltn__category-submenu-children">
+                                                    <li><a href="#">Prostatitis</a></li>
+                                                    <li><a href="#">Benign Prostatic Hyperplasia</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                 
+                                
+                            </div>
+                        </div>
+                        <!-- END CATEGORY-MENU-LIST -->
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="col--- header-menu-column justify-content-center---">
+                            <div class="header-menu header-menu-2 text-start">
+                                <nav>
+                                    <div class="ltn__main-menu">
+                                        <ul>
+                                            <li class="menu-icon"><a href="#">Brands</a>
+                                                <ul class="sub-menu menu-pages-img-show ltn__sub-menu-col-2---">
+                                                    <li>
+                                                        <a href="index.html">Allen Healthcare</a>
+                                                        <img src="{% static 'img/home-demos/allen healthcare.jpg' %}" alt="#">
+                                                    </li>
+                                                    <li>
+                                                        <a href="index-2.html">Adel Germany</a>
+                                                        <img src="{% static 'img/home-demos/adel.jpg' %}" alt="#">
+                                                    </li>
+                                                    <li>
+                                                        <a href="index-3.html">Bahola</a>
+                                                        <img src="{% static 'img/home-demos/bahola.jpg' %}" alt="#">
+                                                    </li>
+                                                    <li>
+                                                        <a href="index-3.html">Bakson Group</a>
+                                                        <img src="{% static 'img/home-demos/bakson.jpg' %}" alt="#">
+                                                    </li>
+                                                    <li>
+                                                        <a href="index-3.html">Bangalore Bio-Plasgens</a>
+                                                        <img src="{% static 'img/home-demos/bbp.jpg' %}" alt="#">
+                                                    </li>
+                                                    <li>
+                                                        <a href="index-3.html">Bhandari Homeopathic</a>
+                                                        <img src="{% static 'img/home-demos/bhandari homeo.jpg' %}" alt="#">
+                                                    </li>
+                                                    <li>
+                                                        <a href="index-3.html">Bhargava Phytolab</a>
+                                                        <img src="{% static 'img/home-demos/bhargava.jpg' %}" alt="#">
+                                                    </li>
+                                                    <li>
+                                                        <a href="index-3.html">Bioforece AG Switzerland</a>
+                                                        <img src="{% static 'img/home-demos/bioforece ag switzeland.jpg' %}" alt="#">
+                                                    </li>
+                                                    <li>
+                                                        <a href="index-3.html">BJAIN Pharmaceuticals</a>
+                                                        <img src="{% static 'img/home-demos/bjain.jpg' %}" alt="#">
+                                                    </li>
+                                                    <li>
+                                                        <a href="index-3.html">Father Muller</a>
+                                                        <img src="{% static 'img/home-demos/father muller.jpg' %}" alt="#">
+                                                    </li>
+                                                    <li>
+                                                        <a href="index-3.html">HAPDCO</a>
+                                                        <img src="{% static 'img/home-demos/happdco.jpg' %}" alt="#">
+                                                    </li>
+                                                    <li>
+                                                        <a href="index-3.html">Haslab</a>
+                                                        <img src="{% static 'img/home-demos/haslab.jpg' %}" alt="#">
+                                                    </li>
+                                                    <li>
+                                                        <a href="index-3.html">Heal well</a>
+                                                        <img src="{% static 'img/home-demos/healwell.jpg' %}" alt="#">
+                                                    </li>
+                                                    <li>
+                                                        <a href="index-3.html">Dr.Reckeweg & Co.</a>
+                                                        <img src="{% static 'img/home-demos/home-2.png' %}" alt="#">
+                                                    </li>
+                                                    <li>
+                                                        <a href="index-3.html">Dr. Willmar Schwabe</a>
+                                                        <img src="{% static 'img/home-demos/schwabe.jpg' %}" alt="#">
+                                                    </li>
+                                                    
+                                                    <li>
+                                                        <a href="index-3.html">Medisynth</a>
+                                                        <img src="{% static 'img/home-demos/medisynth.jpg' %}" alt="#">
+                                                    </li>
+                                                    <li>
+                                                        <a href="index-3.html">New Life</a>
+                                                        <img src="{% static 'img/home-demos/new life.jpg' %}" alt="#">
+                                                    </li>
+                                                    <li>
+                                                        <a href="index-3.html">REPL</a>
+                                                        <img src="{% static 'img/home-demos/repl.jpg' %}" alt="#">
+                                                    </li>
+                                                    <li>
+                                                        <a href="index-3.html">SBL</a>
+                                                        <img src="{% static 'img/home-demos/sbl.jpg' %}" alt="#">
+                                                    </li>
+                                                    <li>
+                                                        <a href="index-3.html">Lord</a>
+                                                        <img src="{% static 'img/home-demos/lord.jpg' %}" alt="#">
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="menu-icon"><a href="#">About</a>
+                                                <ul>
+                                                    <li><a href="about.html">About</a></li>
+                                                    <li><a href="service.html">Services</a></li>
+                                                    <li><a href="service-details.html">Service Details</a></li>
+                                                    <li><a href="portfolio.html">Gallery</a></li>
+                                                    <li><a href="portfolio-2.html">Gallery - 02</a></li>
+                                                    <li><a href="portfolio-details.html">Gallery Details</a></li>
+                                                    <li><a href="team.html">Team</a></li>
+                                                    <li><a href="team-details.html">Team Details</a></li>
+                                                    <li><a href="faq.html">FAQ</a></li>
+                                                    <li><a href="locations.html">Google Map Locations</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="menu-icon"><a href="#">Shop</a>
+                                                <ul>
+                                                    <li><a href="shop.html">Shop</a></li>
+                                                    <li><a href="shop-grid.html">Shop Grid</a></li>
+                                                    <li><a href="shop-left-sidebar.html">Shop Left sidebar</a></li>
+                                                    <li><a href="shop-right-sidebar.html">Shop right sidebar</a></li>
+                                                    <li><a href="product-details.html">Shop details </a></li>
+                                                    <li><a href="#">Other Pages <span class="float-right">>></span></a>
+                                                        <ul>
+                                                            <li><a href="cart.html">Cart</a></li>
+                                                            <li><a href="wishlist.html">Wishlist</a></li>
+                                                            <li><a href="checkout.html">Checkout</a></li>
+                                                            <li><a href="order-tracking.html">Order Tracking</a></li>
+                                                            <li><a href="account.html">My Account</a></li>
+                                                            <li><a href="login.html">Sign in</a></li>
+                                                            <li><a href="register.html">Register</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="menu-icon"><a href="#">News</a>
+                                                <ul>
+                                                    <li><a href="blog.html">News</a></li>
+                                                    <li><a href="blog-grid.html">News Grid</a></li>
+                                                    <li><a href="blog-left-sidebar.html">News Left sidebar</a></li>
+                                                    <li><a href="blog-right-sidebar.html">News Right sidebar</a></li>
+                                                    <li><a href="blog-details.html">News details</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="menu-icon"><a href="#">Brands</a>
+                                                <ul class="mega-menu ">
+                                                    <li><a href="#">Indian Brands</a>
+                                                        <ul class="menu-pages-img-show">
+                                                            <li>
+                                                                <a href="index.html">Allen Healthcare</a>
+                                                                <img src="{% static 'img/home-demos/allen healthcare.jpg' %}" alt="#">
+                                                            </li>
+                                                            <li>
+                                                                <a href="index-3.html">Bakson Group</a>
+                                                                <img src="{% static 'img/home-demos/bakson.jpg' %}" alt="#">
+                                                            </li>
+                                                            <li>
+                                                                <a href="index-3.html">Bangalore Bio-Plasgens</a>
+                                                                <img src="{% static 'img/home-demos/bbp.jpg' %}" alt="#">
+                                                            </li>
+                                                            <li>
+                                                                <a href="index-3.html">Bhandari Homeopathic</a>
+                                                                <img src="{% static 'img/home-demos/bhandari homeo.jpg' %}" alt="#">
+                                                            </li>
+                                                            <li>
+                                                                <a href="index-3.html">Bhargava Phytolab</a>
+                                                                <img src="{% static 'img/home-demos/bhargava.jpg' %}" alt="#">
+                                                            </li>
+                                                            <li>
+                                                                <a href="index-3.html">Medisynth</a>
+                                                                <img src="{% static 'img/home-demos/medisynth.jpg' %}" alt="#">
+                                                            </li>
+                                                            <li>
+                                                                <a href="index-3.html">Heal Well</a>
+                                                                <img src="{% static 'img/home-demos/healwell.jpg' %}" alt="#">
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="#">European brands</a>
+                                                        <ul class="menu-pages-img-show">
+                                                            <li>
+                                                                <a href="index-2.html">Adel Germany</a>
+                                                                <img src="{% static 'img/home-demos/adel.jpg' %}" alt="#">
+                                                            </li>
+                                                            <li>
+                                                                <a href="index-3.html">Dr. Willmar Schwabe</a>
+                                                                <img src="{% static 'img/home-demos/schwabe.jpg' %}" alt="#">
+                                                            </li>
+                                                            <li>
+                                                                <a href="index-3.html">Dr. Reckeweg & Co.</a>
+                                                                <img src="{% static 'img/home-demos/home-2.png' %}" alt="#">
+                                                            </li>
+                                                            <li>
+                                                                <a href="index-3.html">HAPDCO</a>
+                                                                <img src="{% static 'img/home-demos/happdco.jpg' %}" alt="#">
+                                                            </li>
+                                                            <li>
+                                                                <a href="index-3.html">Haslab</a>
+                                                                <img src="{% static 'img/home-demos/haslab.jpg' %}" alt="#">
+                                                            </li>
+                                                            <li>
+                                                                <a href="index-3.html">Bioforce AG Switzerland</a>
+                                                                <img src="{% static 'img/home-demos/bioforece ag switzeland.jpg' %}" alt="#">
+                                                            </li>
+                                                            <li>
+                                                                <a href="index-3.html">Father Muller</a>
+                                                                <img src="{% static 'img/home-demos/father muller.jpg' %}" alt="#">
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="#">International Brands</a>
+                                                        <ul class="menu-pages-img-show">
+                                                            <li>
+                                                                <a href="index-3.html">Bahola</a>
+                                                                <img src="{% static 'img/home-demos/bahola.jpg' %}" alt="#">
+                                                            </li>
+                                                            <li>
+                                                                <a href="index-3.html">BJAIN Pharmaceuticals</a>
+                                                                <img src="{% static 'img/home-demos/bjain.jpg' %}" alt="#">
+                                                            </li>
+                                                            <li>
+                                                                <a href="index-3.html">Lord</a>
+                                                                <img src="{% static 'img/home-demos/lord.jpg' %}" alt="#">
+                                                            </li>
+                                                            <li>
+                                                                <a href="index-3.html">REPL</a>
+                                                                <img src="{% static 'img/home-demos/repl.jpg' %}" alt="#">
+                                                            </li>
+                                                            <li>
+                                                                <a href="index-3.html">New Life</a>
+                                                                <img src="{% static 'img/home-demos/new life.jpg' %}" alt="#">
+                                                            </li>
+                                                            <li>
+                                                                <a href="index-3.html">SBL</a>
+                                                                <img src="{% static 'img/home-demos/sbl.jpg' %}" alt="#">
+                                                            </li>
+                                                            <li>
+                                                                <a href="index-3.html">Dr. Willmar Schwabe</a>
+                                                                <img src="{% static 'img/home-demos/schwabe.jpg' %}" alt="#">
+                                                            </li>
+                                                            <li>
+                                                                <a href="index-3.html">Bioforce AG Switzerland</a>
+                                                                <img src="{% static 'img/home-demos/bioforece ag switzeland.jpg' %}" alt="#">
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="shop.html"><img src="/static/img/banner/mega%20menu%20banner.jpg" alt="#" style="max-width:150%;">
+                                                    </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="contact.html">Contact</a></li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-2 align-self-center d-none d-xl-block">
+                        <div class="header-contact-info text-end">
+                            <a class="font-weight-6 ltn__primary-color" href="tel:+123456789"><span class="ltn__secondary-color"><i class="icon-call font-weight-7"></i></span> +123-456-789-10</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- header-bottom-area end -->
+    </header>
+    <!-- HEADER AREA END -->
+
+    <!-- Utilize Cart Menu Start -->
+    <div id="ltn__utilize-cart-menu" class="ltn__utilize ltn__utilize-cart-menu">
+        <div class="ltn__utilize-menu-inner ltn__scrollbar">
+            <div class="ltn__utilize-menu-head">
+                <span class="ltn__utilize-menu-title">Cart</span>
+                <button class="ltn__utilize-close">×</button>
+            </div>
+            <div class="mini-cart-product-area ltn__scrollbar" id="ltn-cart-products">
+                <!-- Cart products will be dynamically added here -->
+                {% for item in cart_products %}
+                <div class="mini-cart-item clearfix" data-product-id="{{ item.product.id }}">
+                    <div class="mini-cart-img">
+                        <a href="#"><img src="{{ item.product.image.url }}" alt="{{ item.product.name }}"></a>
+                        <span class="mini-cart-item-delete" data-product-id="{{ item.product.id }}"><i class="icon-cancel"></i></span>
+                    </div>
+                    <div class="mini-cart-info">
+                        <h6><a href="#">{{ item.product.name }}</a></h6>
+                        {% if request.session.currency == 'CAD' %}
+                        <span class="mini-cart-quantity">{{ item.quantity }} x CA${{ item.product.price }}</span>
+                    {% elif request.session.currency == 'EUR' %}
+                        <span class="mini-cart-quantity">{{ item.quantity }} x €{{ item.product.price }}</span>
+                    {% else %}
+                        <span class="mini-cart-quantity">{{ item.quantity }} x ${{ item.product.price }}</span>
+                    {% endif %}                    </div>
+                </div>
+                {% empty %}
+                <p>Your cart is empty.</p>
+            {% endfor %}
+
+            </div>
+            <div class="mini-cart-footer">
+                <div class="mini-cart-sub-total">
+                    <h5>Subtotal: <span id="cart-subtotal">{{ request.session.currency|currency_symbol }}{{currency_total}}</span></h5>
+                </div>
+                <div class="btn-wrapper">
+                    <a href="/cart" class="theme-btn-1 btn btn-effect-1">View Cart</a>
+                    <a href="/checkout" class="theme-btn-2 btn btn-effect-2">Checkout</a>
+                </div>
+                <p>Free Shipping on All Orders Over $100!</p>
+            </div>
+
+        </div>
+    </div>
+    <!-- Utilize Cart Menu End -->
+
+    <!-- Utilize Mobile Menu Start -->
+    <div id="ltn__utilize-mobile-menu" class="ltn__utilize ltn__utilize-mobile-menu">
+        <div class="ltn__utilize-menu-inner ltn__scrollbar">
+            <div class="ltn__utilize-menu-head">
+                <div class="site-logo">
+                    <a href="index.html"><img src="{% static 'img/logo.png' %}" alt="Logo"></a>
+                </div>
+                <button class="ltn__utilize-close">×</button>
+            </div>
+            <div class="ltn__utilize-menu-search-form">
+                <form action="#">
+                    <input type="text" placeholder="Search...">
+                    <button><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            <div class="ltn__utilize-menu">
+                <ul>
+                    <li><a href="#">Home</a>
+                        <ul class="sub-menu">
+                            <li><a href="index.html">Home Style 01</a></li>
+                            <li><a href="index-2.html">Home Style 02</a></li>
+                            <li><a href="index-3.html">Home Style 03</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">About</a>
+                        <ul class="sub-menu">
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="service.html">Services</a></li>
+                            <li><a href="service-details.html">Service Details</a></li>
+                            <li><a href="portfolio.html">Portfolio</a></li>
+                            <li><a href="portfolio-2.html">Portfolio - 02</a></li>
+                            <li><a href="portfolio-details.html">Portfolio Details</a></li>
+                            <li><a href="team.html">Team</a></li>
+                            <li><a href="team-details.html">Team Details</a></li>
+                            <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="locations.html">Google Map Locations</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Shop</a>
+                        <ul class="sub-menu">
+                            <li><a href="shop.html">Shop</a></li>
+                            <li><a href="shop-grid.html">Shop Grid</a></li>
+                            <li><a href="shop-left-sidebar.html">Shop Left sidebar</a></li>
+                            <li><a href="shop-right-sidebar.html">Shop right sidebar</a></li>
+                            <li><a href="product-details.html">Shop details </a></li>
+                            <li><a href="cart.html">Cart</a></li>
+                            <li><a href="wishlist.html">Wishlist</a></li>
+                            <li><a href="checkout.html">Checkout</a></li>
+                            <li><a href="order-tracking.html">Order Tracking</a></li>
+                            <li><a href="account.html">My Account</a></li>
+                            <li><a href="login.html">Sign in</a></li>
+                            <li><a href="register.html">Register</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">News</a>
+                        <ul class="sub-menu">
+                            <li><a href="blog.html">News</a></li>
+                            <li><a href="blog-grid.html">News Grid</a></li>
+                            <li><a href="blog-left-sidebar.html">News Left sidebar</a></li>
+                            <li><a href="blog-right-sidebar.html">News Right sidebar</a></li>
+                            <li><a href="blog-details.html">News details</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Pages</a>
+                        <ul class="sub-menu">
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="service.html">Services</a></li>
+                            <li><a href="service-details.html">Service Details</a></li>
+                            <li><a href="portfolio.html">Portfolio</a></li>
+                            <li><a href="portfolio-2.html">Portfolio - 02</a></li>
+                            <li><a href="portfolio-details.html">Portfolio Details</a></li>
+                            <li><a href="team.html">Team</a></li>
+                            <li><a href="team-details.html">Team Details</a></li>
+                            <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="history.html">History</a></li>
+                            <li><a href="add-listing.html">Add Listing</a></li>
+                            <li><a href="locations.html">Google Map Locations</a></li>
+                            <li><a href="404.html">404</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="coming-soon.html">Coming Soon</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="ltn__utilize-buttons ltn__utilize-buttons-2">
+                <ul>
+                    <li>
+                        <a href="account.html" title="My Account">
+                            <span class="utilize-btn-icon">
+                                <i class="far fa-user"></i>
+                            </span>
+                            My Account
+                        </a>
+                    </li>
+                    <li>
+                        <a href="wishlist.html" title="Wishlist">
+                            <span class="utilize-btn-icon">
+                                <i class="far fa-heart"></i>
+                                <sup>3</sup>
+                            </span>
+                            Wishlist
+                        </a>
+                    </li>
+                    <li>
+                        <a href="cart.html" title="Shoping Cart">
+                            <span class="utilize-btn-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                                <sup>5</sup>
+                            </span>
+                            Shoping Cart
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="ltn__social-media-2">
+                <ul>
+                    <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
+                    <li><a href="#" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Utilize Mobile Menu End -->
+     {% block content %}
+
+     {% endblock %}
+
+     
+    <!-- FOOTER AREA START -->
+    <footer class="ltn__footer-area  ">
+      <div class="footer-top-area  section-bg-2 plr--5">
+          <div class="container-fluid">
+              <div class="row">
+                  <div class="col-xl-3 col-md-6 col-sm-6 col-12">
+                      <div class="footer-widget footer-about-widget">
+                          <div class="footer-logo">
+                              <div class="site-logo">
+                                  <img src="{% static 'img/logo-2.png' %}" alt="Logo">
+                              </div>
+                          </div>
+                          <p>Lorem Ipsum is simply dummy text of the and typesetting industry. Lorem Ipsum is dummy text of the printing.</p>
+                          <div class="footer-address">
+                              <ul>
+                                  <li>
+                                      <div class="footer-address-icon">
+                                          <i class="icon-placeholder"></i>
+                                      </div>
+                                      <div class="footer-address-info">
+                                          <p>Brooklyn, New York, United States</p>
+                                      </div>
+                                  </li>
+                                  <li>
+                                      <div class="footer-address-icon">
+                                          <i class="icon-call"></i>
+                                      </div>
+                                      <div class="footer-address-info">
+                                          <p><a href="tel:+0123-456789">+0123-456789</a></p>
+                                      </div>
+                                  </li>
+                                  <li>
+                                      <div class="footer-address-icon">
+                                          <i class="icon-mail"></i>
+                                      </div>
+                                      <div class="footer-address-info">
+                                          <p><a href="mailto:example@example.com">example@example.com</a></p>
+                                      </div>
+                                  </li>
+                              </ul>
+                          </div>
+                          <div class="ltn__social-media mt-20">
+                              <ul>
+                                  <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                  <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                                  <li><a href="#" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
+                                  <li><a href="#" title="Youtube"><i class="fab fa-youtube"></i></a></li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-xl-2 col-md-6 col-sm-6 col-12">
+                      <div class="footer-widget footer-menu-widget clearfix">
+                          <h4 class="footer-title">Company</h4>
+                          <div class="footer-menu">
+                              <ul>
+                                  <li><a href="about.html">About</a></li>
+                                  <li><a href="blog.html">Blog</a></li>
+                                  <li><a href="shop.html">All Products</a></li>
+                                  <li><a href="locations.html">Locations Map</a></li>
+                                  <li><a href="faq.html">FAQ</a></li>
+                                  <li><a href="contact.html">Contact us</a></li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-xl-2 col-md-6 col-sm-6 col-12">
+                      <div class="footer-widget footer-menu-widget clearfix">
+                          <h4 class="footer-title">Services</h4>
+                          <div class="footer-menu">
+                              <ul>
+                                  <li><a href="order-tracking.html">Order tracking</a></li>
+                                  <li><a href="wishlist.html">Wish List</a></li>
+                                  <li><a href="login.html">Login</a></li>
+                                  <li><a href="account.html">My account</a></li>
+                                  <li><a href="about.html">Terms & Conditions</a></li>
+                                  <li><a href="about.html">Promotional Offers</a></li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-xl-2 col-md-6 col-sm-6 col-12">
+                      <div class="footer-widget footer-menu-widget clearfix">
+                          <h4 class="footer-title">Customer Care</h4>
+                          <div class="footer-menu">
+                              <ul>
+                                  <li><a href="login.html">Login</a></li>
+                                  <li><a href="account.html">My account</a></li>
+                                  <li><a href="wishlist.html">Wish List</a></li>
+                                  <li><a href="order-tracking.html">Order tracking</a></li>
+                                  <li><a href="faq.html">FAQ</a></li>
+                                  <li><a href="contact.html">Contact us</a></li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-xl-3 col-md-6 col-sm-12 col-12">
+                      <div class="footer-widget footer-newsletter-widget">
+                          <h4 class="footer-title">Newsletter</h4>
+                          <p>Subscribe to our weekly Newsletter and receive updates via email.</p>
+                          <div class="footer-newsletter">
+                              <form action="#">
+                                  <input type="email" name="email" placeholder="Email*">
+                                  <div class="btn-wrapper">
+                                      <button class="theme-btn-1 btn" type="submit"><i class="fas fa-location-arrow"></i></button>
+                                  </div>
+                              </form>
+                          </div>
+                          <h5 class="mt-30">We Accept</h5>
+                          <img src="{% static 'img/icons/payment-4.png' %}" alt="Payment Image">
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="ltn__copyright-area ltn__copyright-2 section-bg-7  plr--5">
+          <div class="container-fluid ltn__border-top-2">
+              <div class="row">
+                  <div class="col-md-6 col-12">
+                      <div class="ltn__copyright-design clearfix">
+                          <p>All Rights Reserved @ Company <span class="current-year"></span></p>
+                      </div>
+                  </div>
+                  <div class="col-md-6 col-12 align-self-center">
+                      <div class="ltn__copyright-menu text-end">
+                          <ul>
+                              <li><a href="#">Terms & Conditions</a></li>
+                              <li><a href="#">Claim</a></li>
+                              <li><a href="#">Privacy & Policy</a></li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </footer>
+  <!-- FOOTER AREA END -->
+
+  <!-- MODAL AREA START (Quick View Modal) -->
+
+  <div class="ltn__modal-area ltn__quick-view-modal-area">
+      <div class="modal fade" id="quick_view_modal" tabindex="-1" style="z-index: 10500000000000;">
+          <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                          <!-- <i class="fas fa-times"></i> -->
+                      </button>
+                      <script>
+                        $('#add_to_cart_modal').on('hidden.bs.modal', function () {
+                            location.reload();
+                        });
+                    </script>
+                  </div>
+                  <div class="modal-body">
+                       <div class="ltn__quick-view-modal-inner">
+                           <div class="modal-product-item">
+                              <div class="row">
+                                  <div class="col-lg-6 col-12">
+                                      <div class="modal-product-image">
+                                          <img src="#" alt="Product Image" id="quick-modal-product-image">
+                                      </div>
+                                  </div>
+                                  <div class="col-lg-6 col-12">
+                                      <div class="modal-product-info">
+                                          <div class="product-ratting">
+                                              <ul>
+                                                  <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                                  <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                                  <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                                  <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
+                                                  <li><a href="#"><i class="far fa-star"></i></a></li>
+                                                  <li class="review-total"> <a href="#"> ( 95 Reviews )</a></li>
+                                              </ul>
+                                          </div>
+                                          <h3><span id="quick-modal-product-name"></span></h3>
+                                          
+                                          <div class="product-price">
+                                <span id="quick-modal-product-price"></span> <!-- Price placeholder -->
+                                              <del>$165.00</del>
+                                          </div>
+                                          <div class="modal-product-meta ltn__product-details-menu-1">
+                                              <ul>
+                                                  <li>
+                                                      <strong>Categories:</strong> 
+                                                      <span>
+                                                          <a href="#">Parts</a>
+                                                          <a href="#">Car</a>
+                                                          <a href="#">Seat</a>
+                                                          <a href="#">Cover</a>
+                                                      </span>
+                                                  </li>
+                                              </ul>
+                                          </div>
+                                          <div class="ltn__product-details-menu-2">
+                                              <ul>
+                                                  <li>
+                                                      <div class="cart-plus-minus">
+                                                          <input type="number" id="quick-modal-quantity" value="01" name="qtybutton" class="cart-plus-minus-box">
+                                                      </div>
+                                                  </li>
+                                                  <li>
+                                                      <a href="#" id="quick-view-add-to-cart-btn" class="theme-btn-1 btn btn-effect-1 add-to-cart-btn" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#add_to_cart_modal">
+                                                          <i class="fas fa-shopping-cart"></i>
+                                                          <span>ADD TO CART</span>
+                                                      </a>
+                                                  </li>
+                                              </ul>
+                                          </div>
+                                          <div class="ltn__product-details-menu-3">
+                                              <ul>
+                                                  <li>
+                                                      <a href="#" class="" title="Wishlist" data-bs-toggle="modal" data-bs-target="#liton_wishlist_modal">
+                                                          <i class="far fa-heart"></i>
+                                                          <span>Add to Wishlist</span>
+                                                      </a>
+                                                  </li>
+                                                  <li>
+                                                      <a href="#" class="" title="Compare" data-bs-toggle="modal" data-bs-target="#quick_view_modal">
+                                                          <i class="fas fa-exchange-alt"></i>
+                                                          <span>Compare</span>
+                                                      </a>
+                                                  </li>
+                                              </ul>
+                                          </div>
+                                          <hr>
+                                          <div class="ltn__social-media">
+                                              <ul>
+                                                  <li>Share:</li>
+                                                  <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                                  <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                                                  <li><a href="#" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
+                                                  <li><a href="#" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+                                                  
+                                              </ul>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                           </div>
+                       </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  <!-- MODAL AREA END -->
+
+  <!-- MODAL AREA START (Add To Cart Modal) -->
+<!-- MODAL AREA START (Add To Cart Modal) -->
+<div class="ltn__modal-area ltn__add-to-cart-modal-area">
+  <div class="modal fade" id="add_to_cart_modal" tabindex="-1" style="z-index: 10500000000001;">
+      <div class="modal-dialog modal-md" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                  <script>
+                    $('#add_to_cart_modal').on('hidden.bs.modal', function () {
+                        location.reload();
+                    });
+                </script>
+              </div>
+              <!-- Modal content (similar structure as your static modal) -->
+              <div class="modal-body">
+                  <div class="ltn__quick-view-modal-inner">
+                      <div class="modal-product-item">
+                          <div class="row">
+                              <div class="col-12">
+                                  <div class="modal-product-img">
+                                      <img src="#" alt="Product Image" id="modal-product-image">
+                                  </div>
+                                  <div class="modal-product-info">
+                                      <h5><span id="modal-product-name"></span></h5>
+                                      <p class="added-cart"><i class="fa fa-check-circle"></i> Successfully added to your Cart</p>
+                                      <div class="btn-wrapper"></div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- MODAL AREA END -->
+  <!-- MODAL AREA END -->
+
+  <!-- MODAL AREA START (Wishlist Modal) -->
+<!-- MODAL AREA START (Wishlist Modal) -->
+<div class="ltn__modal-area ltn__add-to-cart-modal-area">
+  <div class="modal fade" id="liton_wishlist_modal" tabindex="-1" aria-labelledby="litonWishlistModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-md" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <!-- <h5 class="modal-title" id="litonWishlistModalLabel">Wishlist</h5> -->
+                  <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <div class="modal-product-item">
+                      <div class="row">
+                          <div class="col-12">
+                              <div class="modal-product-img">
+                                  <img id="wishlist-product-image" src="" alt="Product Image">
+                              </div>
+                              <div class="modal-product-info">
+                                  <h5 id="wishlist-product-name"></h5>
+                                  <p id="wishlist-notification-message"></p>
+                                  <div class="btn-wrapper">
+                                      <a href="{% url 'wishlist' %}" class="theme-btn-1 btn btn-effect-1">View Wishlist</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- MODAL AREA END -->
+  <!-- MODAL AREA END -->
+
+</div>
+<!-- Body main wrapper end -->
+
+  <!-- preloader area start -->
+  <div class="preloader d-none" id="preloader">
+      <div class="preloader-inner">
+          <div class="spinner">
+              <div class="dot1"></div>
+              <div class="dot2"></div>
+          </div>
+      </div>
+  </div>
+  <!-- preloader area end -->
+
+
+
+  <script>
+
+  $(document).ready(function() {
+      // Common function to update cart
+      function updateCart(productId, action, quantity = 1) {
+          $.ajax({
+              url: '{% url "update_cart" %}',
+              method: 'POST',
+              data: {
+                  'product_id': productId,
+                  'action': action,
+                  'quantity': quantity,
+                  'csrfmiddlewaretoken': '{{ csrf_token }}'
+              },
+              success: function(response) {
+                  // Update main cart
+                  $('#cart-total-items').text(response.total_items);
+                  $('#cart-products').empty();
+                  response.products.forEach(product => {
+                      $('#cart-products').append(
+                          '<li>' +
+                          '<img src="' + product.image_url + '" alt="' + product.name + '" style="width: 50px; height: 50px;">' +
+                          product.name + ' - $' + product.price +
+                          '</li>'
+                      );
+                  });
+  
+                  // Update utilize cart menu
+                  $('#ltn-cart-products').empty();
+                  response.products.forEach(product => {
+                      $('#ltn-cart-products').append(
+                          '<div class="mini-cart-item clearfix" data-product-id="' + product.id + '">' +
+                          '<div class="mini-cart-img">' +
+                          '<a href="#"><img src="' + product.image_url + '" alt="' + product.name + '"></a>' +
+                          '<span class="mini-cart-item-delete" data-product-id="' + product.id + '"><i class="icon-cancel"></i></span>' +
+                          '</div>' +
+                          '<div class="mini-cart-info">' +
+                          '<h6><a href="#">' + product.name + '</a></h6>' +
+                          '<span class="mini-cart-quantity">' + product.quantity + ' x $' + product.price + '</span>' +
+                          '</div>' +
+                          '<button class="remove-from-cart-btn" data-product-id="' + product.id + '">Remove from Cart</button>' +
+                          '</div>'
+                      );
+                  });
+  
+                  // Update subtotal
+                  let subtotal = parseFloat(response.cart_subtotal);  // Parse as float if necessary
+                  $('#cart-subtotal').text('$' + subtotal.toFixed(2));
+                  // Close the quick view modal
+                  $('#quick_view_modal').modal('hide');
+
+              },
+              error: function(response) {
+                  alert('Error updating cart');
+                  console.log('AJAX error response:', response);  // Debugging
+              }
+          });
+      }
+// Example of a formatPrice function with dynamic currency symbol
+function formatPrice(price, selected_currency) {
+  const numericPrice = Number(price);
+
+  let currencySymbol = ''; // Initialize currency symbol
+
+  console.log('Currency Code:', selected_currency); // Log the currency code received
+
+  
+  switch(selected_currency) {
+      case 'USD':
+          currencySymbol = '$';
+          break;
+      case 'CAD':
+          currencySymbol = 'CA$'; // Canadian Dollar symbol
+          break;
+      case 'EUR':
+          currencySymbol = '€';
+          break;
+      case 'GBP':
+          currencySymbol = '£';
+          break;
+      case 'INR':
+          currencySymbol = '₹';
+          break;
+      case 'AUD':
+          currencySymbol = 'A$'; // Australian Dollar symbol
+          break;
+      default:
+          currencySymbol = ''; // Default to empty for unknown currencies
+          break;
+  }
+
+  // Format price to two decimal places with currency symbol
+  if (!isNaN(numericPrice)) {
+      if (currencySymbol) {
+          return currencySymbol + numericPrice.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+      } else {
+          return numericPrice.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'); // Fallback to numeric format
+      }
+  } else {
+      return 'Price not available'; // Handle if price is not a valid number
+  }
+}
+      // Function to update quick view modal content
+      function updateQuickViewModal(product) {
+          $('#quick-modal-product-image').attr('src', product.image_url);
+          $('#quick-modal-product-name').text(product.name);
+          $('#quick-modal-product-price').text(formatPrice(product.price)); // Set formatted product price
+
+          $('#quick-modal-quantity').val(1); // Reset quantity to 1
+          $('#quick-view-add-to-cart-btn').data('product-id', product.id);
+          $('#quick-view-add-to-cart-btn').data('product-image', product.image_url); // Store product image
+          $('#quick-view-add-to-cart-btn').data('product-name', product.name); // Store product name
+      }
+  
+      // Open quick view modal with product details
+      $('.quick-view-btn').click(function() {
+          const productId = $(this).data('product-id');
+          // Fetch product details via AJAX
+          $.ajax({
+              url: '/product_details/' + productId + '/',
+              method: 'GET',
+              success: function(product) {
+                  updateQuickViewModal(product);
+                  $('#quick_view_modal').modal('show');
+              },
+              error: function(xhr, status, error) {
+                  alert('Error fetching product details');
+                  console.log('AJAX error:', xhr.responseText); // Log the response for debugging
+              }
+          });
+      });
+  
+      // Add to Cart button click handler (main and quick view modal)
+      $('.add-to-cart-btn').click(function(e) {
+          e.preventDefault(); // Prevent default link behavior
+          const productId = $(this).data('product-id');
+          const quantity = $('#quick-modal-quantity').val() || 1; // Default to 1 if quantity is not provided
+          updateCart(productId, 'add', quantity);
+  
+          // Display the correct product image and name in the notification modal
+          const productImage = $(this).data('product-image');
+          const productName = $(this).data('product-name');
+          $('#modal-product-image').attr('src', productImage);
+          $('#modal-product-name').text(productName);
+          $('#add_to_cart_modal').modal('show');
+  
+          // Reset quick view modal data
+          $('#quick-modal-quantity').val(1); // Reset quantity input to 1 
+      });
+      $('.update-cart-btn').click(function(e) {
+          e.preventDefault(); // Prevent default link behavior
+          const productId = $(this).data('product-id');
+          const quantity = $('#quick-modal-quantity').val() || 1; // Default to 1 if quantity is not provided
+          updateCart(productId, 'update', quantity);
+  
+          // Display the correct product image and name in the notification modal
+          const productImage = $(this).data('product-image');
+          const productName = $(this).data('product-name');
+          $('#modal-product-image').attr('src', productImage);
+          $('#modal-product-name').text(productName);
+          $('#add_to_cart_modal').modal('show');
+  
+          // Reset quick view modal data
+          $('#quick-modal-quantity').val(1); // Reset quantity input to 1 
+      });
+  
+      // Remove from Cart button click handler (inside utilize cart menu)
+      $(document).on('click', '.mini-cart-item-delete', function() {
+          const productId = $(this).data('product-id');
+          updateCart(productId, 'remove');
+      });
+  
+      // Remove from Cart button click handler (outside utilize cart menu)
+      $(document).on('click', '.remove-from-cart-btn', function() {
+          const productId = $(this).data('product-id');
+          updateCart(productId, 'remove');
+      });
+  });
+  </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      // Add event listener to currency select dropdown
+      document.getElementById('currency-select').addEventListener('change', function() {
+          // Submit the form when currency selection changes
+          document.getElementById('currency-form').submit();
+      });
+  });
+  </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+    document.querySelectorAll('.wishlist-btn').forEach(button => {
+        button.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const productId = e.currentTarget.getAttribute('data-product-id');
+            const productName = e.currentTarget.getAttribute('data-product-name');
+            const productImage = e.currentTarget.getAttribute('data-product-image');
+            const icon = document.getElementById(`heart-icon-${productId}`);
+
+            if (!icon) {
+                console.error(`Icon element not found for product ID ${productId}`);
+                return;
+            }
+
+            try {
+                const response = await fetch('{% url "toggle_wishlist" %}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrfToken
+                    },
+                    body: JSON.stringify({ product_id: productId })
+                });
+
+                if (response.status === 401) {
+                    // Redirect to login if unauthorized
+                    window.location.href = '/accounts/login/?next=/toggle-wishlist/';
+                    return;
+                }
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const result = await response.json();
+
+                const nameElement = document.getElementById('wishlist-product-name');
+                const imageElement = document.getElementById('wishlist-product-image');
+                const messageElement = document.getElementById('wishlist-notification-message');
+
+                if (!nameElement || !imageElement || !messageElement) {
+                    console.error('Modal elements not found');
+                    return;
+                }
+
+                if (result.added) {
+                    icon.classList.remove('far', 'fa-heart');
+                    icon.classList.add('fas', 'fa-heart');
+                    updateModal(productName, productImage, 'Successfully added to your Wishlist');
+                } else {
+                    icon.classList.remove('fas', 'fa-heart');
+                    icon.classList.add('far', 'fa-heart');
+                    updateModal(productName, productImage, 'Removed from your Wishlist');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            }
+        });
+    });
+
+    function updateModal(name, image, message) {
+        console.log("Modal update:", name, image, message);  // Debugging line
+        const nameElement = document.getElementById('wishlist-product-name');
+        const imageElement = document.getElementById('wishlist-product-image');
+        const messageElement = document.getElementById('wishlist-notification-message');
+
+        if (!nameElement || !imageElement || !messageElement) {
+            console.error('Modal elements not found');
+            return;
+        }
+
+        nameElement.innerText = name;
+        imageElement.src = image;
+        messageElement.innerText = message;
+
+        const modal = new bootstrap.Modal(document.getElementById('liton_wishlist_modal'));
+        modal.show();
+    }
+});
+
+  </script>
+  
+
+  
+  
+</body>
+</html>

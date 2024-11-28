@@ -1,0 +1,171 @@
+{% load custom_filters %}
+
+{% load static %}
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+  <!-- Meta Tags -->
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="ThemeMarch">
+  <!-- Site Title -->
+  <title>General Invoice</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
+  <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+</head>
+
+<body>
+  <div class="cs-container">
+    <div class="cs-invoice cs-style1">
+      <div class="cs-invoice_in" id="download_section">
+        <div class="cs-invoice_head cs-type1 cs-mb25">
+          <div class="cs-invoice_left">
+            <p class="cs-invoice_number cs-primary_color cs-mb5 cs-f16"><b class="cs-primary_color">Invoice No:</b> #{{ order.get_invoice_number }}</p>
+            <p class="cs-invoice_date cs-primary_color cs-m0"><b class="cs-primary_color">Date: </b>{{ order.formatted_created_at }}</p>
+          </div>
+          <div class="cs-invoice_right cs-text_right">
+            <div class="cs-logo cs-mb5"><img src="{% static 'img/logo.png' %}" alt="Logo" style="width: 100%;"></div>
+          </div>
+        </div>
+        <div class="cs-invoice_head cs-mb10">
+          <div class="cs-invoice_left">
+            <b class="cs-primary_color">Invoice To:</b>
+            <p>
+              RosebestLLC<br>
+Farmington Hills,MI 48336<br>
+Ph: 248 943 3905<br>
+Email – info@rosebest.com<br>
+                          </p>
+          </div>
+          <div class="cs-invoice_right cs-text_right">
+            <b class="cs-primary_color">Pay To:</b>
+            <p>
+              Biz499 <br>
+              FF231, Middle wing, 2nd floor <br>
+              Vesu, Surat <br>
+              biz499agency@gmail.com
+            </p>
+          </div>
+        </div>
+        <div class="cs-table cs-style1">
+          <div class="cs-round_border">
+            <div class="cs-table_responsive">
+              <table>
+                <thead>
+                  <tr>
+                    <th class="cs-width_3 cs-semi_bold cs-primary_color cs-focus_bg">Item</th>
+                    <th class="cs-width_4 cs-semi_bold cs-primary_color cs-focus_bg">Description</th>
+                    <th class="cs-width_2 cs-semi_bold cs-primary_color cs-focus_bg">Qty</th>
+                    <th class="cs-width_1 cs-semi_bold cs-primary_color cs-focus_bg">Price</th>
+                    <th class="cs-width_2 cs-semi_bold cs-primary_color cs-focus_bg cs-text_right">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for order_product in order_products %}
+                  <tr>
+                    <td class="cs-width_3">{{ order_product.product.name }} </td>
+                    <td class="cs-width_4">{{ order_product.product.description }}</td>
+                    <td class="cs-width_2">{{ order_product.quantity }}</td>
+                    <td class="cs-width_1">$ {{ order_product.product.price }}</td>
+                    <td class="cs-width_2 cs-text_right">$ {{ order_product.quantity|multiply:order_product.product.price }}</td>
+                  </tr>
+                  {% endfor %}
+                  <tr>
+                    <td class="cs-width_3">Ui/UX Design</td>
+                    <td class="cs-width_4">Responsive Web design for all modes,ensuring aesthetics, and user experience</td>
+                    <td class="cs-width_2">1</td>
+                    <td class="cs-width_1">INR 6000/-</td>
+                    <td class="cs-width_2 cs-text_right">INR 6000/-</td>
+                  </tr>
+                  <tr>
+                    <td class="cs-width_3">Shopify Development</td>
+                    <td class="cs-width_4">Enhance your online store's functionality</td>
+                    <td class="cs-width_2">1</td>
+                    <td class="cs-width_1">INR 6000/-</td>
+                    <td class="cs-width_2 cs-text_right">INR 6000/-</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="cs-invoice_footer cs-border_top">
+              <div class="cs-left_footer cs-mobile_hide">
+                <p class="cs-mb0"><b class="cs-primary_color">Additional Information:</b></p>
+                <p class="cs-m0"> 1: Additional work other than this will be charged extra.
+</p>
+                <p class="cs-m0"> 2: Development time : 20-22 days
+</p>
+                <p class="cs-m0"> 3: In case of Shopify incompatibility, you can opt for a custom website on a dedicated Ubuntu server for an additional Rs. 4000.
+</p>
+              </div>
+              <div class="cs-right_footer">
+                <table>
+                  <tbody>
+                    <tr class="cs-border_left">
+                      <td class="cs-width_3 cs-semi_bold cs-primary_color cs-focus_bg">Subtoal</td>
+                      <td class="cs-width_3 cs-semi_bold cs-focus_bg cs-primary_color cs-text_right">INR 16,000/-</td>
+                    </tr>
+                                      </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="cs-invoice_footer">
+            <div class="cs-left_footer cs-mobile_hide"></div>
+            <div class="cs-right_footer">
+              <table>
+                <tbody>
+                  <tr class="cs-border_none">
+                    <td class="cs-width_3 cs-border_top_0 cs-bold cs-f16 cs-primary_color">Total Amount</td>
+                    <td class="cs-width_3 cs-border_top_0 cs-bold cs-f16 cs-primary_color cs-text_right">INR 16,000/-</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="cs-note">
+          <div class="cs-note_left">
+            <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path d="M416 221.25V416a48 48 0 01-48 48H144a48 48 0 01-48-48V96a48 48 0 0148-48h98.75a32 32 0 0122.62 9.37l141.26 141.26a32 32 0 019.37 22.62z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/><path d="M256 56v120a32 32 0 0032 32h120M176 288h160M176 368h160" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
+          </div>
+          <div class="cs-note_right">
+            <p class="cs-mb0"><b class="cs-primary_color cs-bold">Terms and Conditions</b></p>
+            <p class="cs-m0">1. Applicable taxes GST will be extra if any.<br>
+2. 50% advance amount to be paid , 25% after 30 days & the balance 25% shall be paid after completion of work .<br>
+3. Input and Desired Output should be given in written, before commencement of the work.</p>
+          </div>
+        </div><!-- .cs-note -->
+      </div>
+      <div class="cs-invoice_btns cs-hide_print">
+        <a href="javascript:window.print()" class="cs-invoice_btn cs-color1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path d="M384 368h24a40.12 40.12 0 0040-40V168a40.12 40.12 0 00-40-40H104a40.12 40.12 0 00-40 40v160a40.12 40.12 0 0040 40h24" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/><rect x="128" y="240" width="256" height="208" rx="24.32" ry="24.32" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/><path d="M384 128v-24a40.12 40.12 0 00-40-40H168a40.12 40.12 0 00-40 40v24" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/><circle cx="392" cy="184" r="24"/></svg>
+          <span>Print</span>
+    
+        </a>
+        <button id="download_btn" class="cs-invoice_btn cs-color2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Download</title><path d="M336 176h40a40 40 0 0140 40v208a40 40 0 01-40 40H136a40 40 0 01-40-40V216a40 40 0 0140-40h40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M176 272l80 80 80-80M256 48v288"/></svg>
+          <span>Download</span>
+        </button>
+      </div>
+
+
+
+    <script>
+        document.getElementById('saveAsPdf').addEventListener('click', function () {
+            const element = document.body; // The element to be converted to PDF (in this case, the entire body)
+            html2pdf().from(element).save();
+        });
+    </script>
+
+    </div>
+  </div>
+  <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/js/jspdf.min.js' %}"></script>
+  <script src="{% static 'assets/js/html2canvas.min.js' %}"></script>
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+</html>

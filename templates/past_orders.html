@@ -1,0 +1,31 @@
+{% extends "base/base.html" %}
+{% block content %}
+
+
+<h2>Past Orders</h2>
+
+{% for order in orders %}
+
+    <h3>Order ID: {{ order.id }}</h3>
+    <p>Total Price: {{ order.total_price }}</p>
+    <p>Status: {{ order.status }}</p>
+
+    <h4>Products Ordered:</h4>
+    <ul>
+        {% for order_product in order.orderproduct_set.all %}
+            <li>{{ order_product.product.name }} - Quantity: {{ order_product.quantity }}</li>
+        {% endfor %}
+    </ul>
+{% endfor %}
+
+
+<h2>Past Orders</h2>
+<ul>
+    {% for order in orders %}
+    <li>
+        <a href="{% url 'order_tracking' order.id %}">Order {{ order.id }} - {{ order.created_at }}</a>
+        <p>Status: {{ order.status }}</p>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
